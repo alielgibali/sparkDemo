@@ -1,4 +1,4 @@
-package com.example.spark_demo
+package com.spark.sparkdemo
 
 import io.flutter.embedding.android.FlutterActivity
 
