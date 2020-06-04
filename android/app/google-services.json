@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "84646144913",
+    "firebase_url": "https://sparkdemo-4db8b.firebaseio.com",
+    "project_id": "sparkdemo-4db8b",
+    "storage_bucket": "sparkdemo-4db8b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84646144913:android:7396698d28e6a311dc0830",
+        "android_client_info": {
+          "package_name": "com.spark.sparkdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "84646144913-q0let3mh0637jrtdavf6d8d133gfh4hk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDntkSaJY-ipW11s5Hl4d0mk1ZvfZWQUg8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "84646144913-q0let3mh0637jrtdavf6d8d133gfh4hk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "84646144913-dgptffqs8lparpi2oj15hqvh8s27dnuk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.spark.sparkdemo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
