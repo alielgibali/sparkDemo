@@ -22,7 +22,7 @@ class _AuthScreenState extends State<AuthScreen> {
     bool isLogin,
     BuildContext ctx,
   ) async {
-    Provider.of<Loading>(context,listen: false).loading();
+    Provider.of<Loading>(context, listen: false).loading();
     AuthResult authResult;
     try {
       if (isLogin) {
@@ -36,9 +36,12 @@ class _AuthScreenState extends State<AuthScreen> {
           password: password,
         );
       }
-      Navigator.of(context).pushReplacementNamed(ProductOverViewScreen.routeName);
+      Navigator.of(context)
+          .pushReplacementNamed(ProductOverViewScreen.routeName);
     } on PlatformException catch (err) {
-      Provider.of<Loading>(context,listen:false).loading();
+      setState(() {
+        AuthFormState.isLoading = false;
+      });
 
       var message = 'An error occured , please check your credentials';
       if (err.message != null) {
@@ -51,8 +54,9 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
       );
     } catch (error) {
-      Provider.of<Loading>(context,listen:false).loading();
-
+      setState(() {
+        AuthFormState.isLoading = false;
+      });
       print(error);
       Scaffold.of(ctx).showSnackBar(
         SnackBar(
@@ -121,8 +125,10 @@ class _AuthScreenState extends State<AuthScreen> {
                           child: Text(
                             'Spark',
                             style: TextStyle(
-                              color:
-                                  Theme.of(context).accentTextTheme.headline1.color,
+                              color: Theme.of(context)
+                                  .accentTextTheme
+                                  .headline1
+                                  .color,
                               fontSize: 50,
                               fontFamily: 'Anton',
                               fontWeight: FontWeight.normal,

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:spark_demo/providers/loading.dart';
 
 class AuthForm extends StatefulWidget {
   AuthForm(
@@ -9,11 +7,12 @@ class AuthForm extends StatefulWidget {
   final void Function(String email, String userName, String password,
       bool isLogin, BuildContext ctx) submitFn;
   @override
-  _AuthFormState createState() => _AuthFormState();
+  AuthFormState createState() => AuthFormState();
 }
 
-class _AuthFormState extends State<AuthForm> {
+class AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
+ static bool isLoading = false;
   final _userNameFocus = FocusNode();
   final _passwordFocus = FocusNode();
   var _isLogin = true;
@@ -31,6 +30,9 @@ class _AuthFormState extends State<AuthForm> {
     // FocusScope.of(context).unfocus();
     final isValid = _formKey.currentState.validate();
     if (isValid) {
+      setState(() {
+        isLoading = true;
+      });
       _formKey.currentState.save();
       widget.submitFn(_userEmail.trim(), _userName.trim(), _userPassword.trim(),
           _isLogin, context);
@@ -117,9 +119,10 @@ class _AuthFormState extends State<AuthForm> {
                   ),
                   RaisedButton(
                     onPressed: _trySubmit,
-                    child: Provider.of<Loading>(context,listen: false).isLoading
-                        ? CircularProgressIndicator()
-                        : Text(_isLogin ? 'Login' : 'Sign up'),
+                    child:
+                       isLoading
+                            ? CircularProgressIndicator()
+                            : Text(_isLogin ? 'Login' : 'Sign up'),
                   ),
                   FlatButton(
                     textColor: Theme.of(context).primaryColor,
