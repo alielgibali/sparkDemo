@@ -12,7 +12,7 @@ class AuthForm extends StatefulWidget {
 
 class AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
- static bool isLoading = false;
+  static bool isLoading = false;
   final _userNameFocus = FocusNode();
   final _passwordFocus = FocusNode();
   var _isLogin = true;
@@ -96,6 +96,9 @@ class AuthFormState extends State<AuthForm> {
                       },
                     ),
                   TextFormField(
+                    onFieldSubmitted: (_) {
+                      _trySubmit();
+                    },
                     onEditingComplete: () {
                       FocusScope.of(context).unfocus();
                     },
@@ -119,10 +122,9 @@ class AuthFormState extends State<AuthForm> {
                   ),
                   RaisedButton(
                     onPressed: _trySubmit,
-                    child:
-                       isLoading
-                            ? CircularProgressIndicator()
-                            : Text(_isLogin ? 'Login' : 'Sign up'),
+                    child: isLoading
+                        ? CircularProgressIndicator()
+                        : Text(_isLogin ? 'Login' : 'Sign up'),
                   ),
                   FlatButton(
                     textColor: Theme.of(context).primaryColor,
