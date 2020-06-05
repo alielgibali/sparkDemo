@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:spark_demo/helpers/firebase_auth.dart';
 import 'package:spark_demo/providers/loading.dart';
 import 'package:spark_demo/screens/product_overview_screen.dart';
 import 'dart:math';
@@ -26,15 +27,9 @@ class _AuthScreenState extends State<AuthScreen> {
     AuthResult authResult;
     try {
       if (isLogin) {
-        authResult = await _auth.signInWithEmailAndPassword(
-          email: email,
-          password: password,
-        );
+        authResult = await FirebaseAuthentication.signIn(email, password);
       } else {
-        authResult = await _auth.createUserWithEmailAndPassword(
-          email: email,
-          password: password,
-        );
+        authResult = await FirebaseAuthentication.signUp(email, password);
       }
       Navigator.of(context)
           .pushReplacementNamed(ProductOverViewScreen.routeName);
